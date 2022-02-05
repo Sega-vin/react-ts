@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-// import styles from './Header.module.scss'
+import styles from './Header.module.scss'
 
 const Header:FC = () => {
   return (
     <div>
-      {/* <header className={styles.Header}></header> */}
+      <header className={styles.header}></header>
     </div>
   );
 };
