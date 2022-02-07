@@ -1,0 +1,23 @@
+@import 'variables';
+@import 'normalize';
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-stack;
+  color: $primary-color;
+}
+a{
+  color: inherit;
+}
+:root{
+  --primary-color: #09f1de;
+}
+.text-subtitle{
+  font-size: $font-base;
+}
+.text-title-h6{
+  font-size: $font-h6;
+}

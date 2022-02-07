@@ -1,14 +1,18 @@
 import React, { useEffect, useState, FC, useMemo } from 'react';
-import Search from '../components/Search';
 import UserItem from '../components/UserItem';
 import List from '../components/ui/List';
 import axios  from 'axios';
 import { IUser } from '../types/types';
 import { useNavigate } from 'react-router-dom';
+import AppButton from '../components/ui/Button/AppButton';
+import Modal from '../components/ui/Modal/Modal';
+import AppInput from '../components/ui/Input/AppInput';
+import UserForm from '../components/Forms/UserForm/UserForm';
 
 const UserPage:FC = () => {
   const [users, setUsers] = useState<IUser[]>([])
   const [searchVal, setSearchVal] = useState<string>('')
+  const [modalUser, setModalUser] = useState<boolean>(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -24,25 +28,51 @@ const UserPage:FC = () => {
     }
   }
   
+  const createUser = (user: IUser) => {
+    setUsers([user, ...users])
+  }
+
+  const deleteUser = (index: number) => {
+    users.splice(index, 1)
+    setUsers([...users])
+  }
+
   const sortUsers = useMemo(() => {
     return users.filter(user => user.name.toLowerCase().indexOf(searchVal.toLowerCase()) !== -1)
   }, [users, searchVal])
 
   return (
     <div>
-      <Search 
-        value={searchVal} 
-        onChange={(value:string) => setSearchVal(value)}
-        reset={() => setSearchVal('')}
-      />
-        <div>
-          <List 
-            items={sortUsers} 
-            renderItem={(user: IUser) => 
-              (<UserItem user={user} key={user.id} onClick={(user) => navigate('/users/' + user.id)}/>)
-            }
+      <div style={{padding: '10px'}}>
+        <div style={{width: '300px'}}>
+          <AppInput 
+            value={searchVal} 
+            onChange={(value:string) => setSearchVal(value)}
+            label="Поиск:"
           />
         </div>
+        <hr />
+        <AppButton
+          onClick={() => setModalUser(true)}
+        >Добавить юзера</AppButton>
+      </div>
+      <div>
+        <List 
+          items={sortUsers} 
+          renderItem={(user: IUser, index) => 
+            (<UserItem 
+              user={user} 
+              index={index}
+              key={user.id} 
+              onClick={(user) => navigate('/users/' + user.id)}
+              delUser={(index) => deleteUser(index)}
+            />)
+          }
+        />
+      </div>
+      <Modal visible={modalUser} setVisible={setModalUser}>
+        <UserForm create={createUser}/>
+      </Modal>
     </div>
   );
 };

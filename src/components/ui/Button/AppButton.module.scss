@@ -1,0 +1,23 @@
+.appButton{
+  padding: 10px;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  min-width: 200px;
+  &:hover{
+    background-color: #f2f2f2;
+    transition: background-color 0.3s;
+  }
+}
+
+.appButton_icon{
+  border-radius: 50%;
+  border: unset;
+  color: unset;
+  min-width: unset;
+  padding: 5px;
+  display: flex;
+}
