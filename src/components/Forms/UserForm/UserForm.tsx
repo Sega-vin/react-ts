@@ -1,5 +1,5 @@
-import React, { FC, MouseEventHandler, useState } from 'react';
-import { IUser } from '../../../types/types';
+import React, { FC, useState } from 'react';
+import { IUser } from '../../../types/user';
 import AppButton from '../../ui/Button/AppButton';
 import AppInput from '../../ui/Input/AppInput';
 import styles from './UserForm.module.scss'
@@ -8,15 +8,14 @@ interface UserFormProps{
   create: (user: IUser) => void
 }
 
-
-
 const UserForm:FC<UserFormProps> = ({create}) => {
   const [user, setUser] = useState({
     name: '',
     email: ''
   })
 
-  const createUser = () => {
+  const createUser = (e: React.MouseEvent) => {
+    e.preventDefault()
     const newPost = {
       id: Date.now(),
       address: {},
@@ -31,16 +30,15 @@ const UserForm:FC<UserFormProps> = ({create}) => {
       <AppInput 
         value={user.name} 
         label='Имя'
-        onChange={(value) => setUser({...user, name: value})}
+        getVal={(value) => setUser({...user, name: value})}
       />
       <AppInput 
         value={user.email} 
         label='Email'
-        onChange={(value) => setUser({...user, email: value})}
+        getVal={(value) => setUser({...user, email: value})}
       />
       <AppButton
-        onClick={createUser}
-        prevent={true}
+        onClick={(e) => createUser(e)}
       >Создать пользователя</AppButton>
     </form>
   );

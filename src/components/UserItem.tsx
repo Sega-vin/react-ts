@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import { IUser } from '../types/types';
-import AppButton from './ui/Button/AppButton';
+import { IUser } from '../types/user';
+import AppButton, { ButtonType } from './ui/Button/AppButton';
 import Card from './ui/Card';
 
 interface UserItemProps{
@@ -19,7 +19,10 @@ const UserItem:FC<UserItemProps> = ({user, onClick, delUser, index}) => {
         <p>{user.address.street}</p>
         <p>{user.address.city}</p>
       </div>
-      <AppButton onClick={() => delUser(index)}>
+      <AppButton 
+        onClick={() => delUser(index)} 
+        VisibleType={ButtonType.fill}
+      >
         Удалить
       </AppButton>
     </Card>

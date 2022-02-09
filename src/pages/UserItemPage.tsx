@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { IUser } from '../types/types';
+import { IUser } from '../types/user';
 import axios  from 'axios';
 import Card from '../components/ui/Card';
 

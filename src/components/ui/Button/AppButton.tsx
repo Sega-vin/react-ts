@@ -3,33 +3,31 @@ import styles from './AppButton.module.scss'
 
 export enum ButtonType {
   icon='icon',
-  default='default'
+  default='default',
+  fill="fill"
 }
 
-interface ButtonProps{
-  onClick?: () => void,
+interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, React.AriaAttributes{
   className?: string;
-  type?: ButtonType;
-  prevent?: boolean
+  VisibleType?: ButtonType;
 }
 
-const AppButton:FC<ButtonProps> = ({onClick, children, className, type, prevent}) => {
-
-  const PreventClick = (e: React.MouseEvent) => {
-    if(prevent) e.preventDefault()
-    if(onClick) onClick()
-  }
+const AppButton:FC<ButtonProps> = ({onClick, children, className, VisibleType, ...props}) => {
 
   const buttonClasses = [styles.appButton, className]
 
-  if(type === 'icon'){
+  if(VisibleType === 'icon'){
     buttonClasses.push(styles.appButton_icon)
   }
-
+  if(VisibleType === 'fill'){
+    buttonClasses.push(styles.appButton_fill)
+  }
+  
   return (
     <button 
+      {...props}
       className={buttonClasses.join(' ')} 
-      onClick={(e) => PreventClick(e)}
+      onClick={(e) => {if(onClick) onClick(e)}}
     >
       {children}
     </button>

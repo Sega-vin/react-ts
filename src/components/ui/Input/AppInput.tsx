@@ -1,25 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, InputHTMLAttributes } from 'react';
 import styles from './AppInput.module.scss'
 
-interface AppInputProps{
-  value: string;
-  onChange: (value:string) => void;
+interface AppInputProps extends InputHTMLAttributes<HTMLInputElement>{
+  getVal: (value:string) => void;
   className?: string;
   label?: string;
 }
 
-const AppInput:FC<AppInputProps> = ({value, onChange, className, label}) => {
+const AppInput:FC<AppInputProps> = ({className, label, getVal, ...props}) => {
   const inputClasses = [styles.appInput, className]
   return (
     <div>
-      <label htmlFor="inp">{label}</label>
+      <label htmlFor="inp" className={styles.label}>{label}</label>
       <input 
-        placeholder={label}
         id="inp"
         className={inputClasses.join(' ')}
-        type="text" 
-        onChange={(e) => onChange(e.target.value)} 
-        value={value} 
+        {...props}
+        onChange={(e) => getVal(e.target.value)}  
       />
     </div>
   );

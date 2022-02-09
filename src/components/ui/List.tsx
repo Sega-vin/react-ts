@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React from 'react';
+import { TransitionGroup } from 'react-transition-group';
 
 interface ListProps<T>{
   items: T[];
@@ -8,7 +9,9 @@ interface ListProps<T>{
 export default function List<T>(props: ListProps<T>){
   return (
     <div>
-      {props.items.map(props.renderItem)}
+      <TransitionGroup>
+        {props.items.map(props.renderItem)}
+      </TransitionGroup>
     </div>
   )
 }

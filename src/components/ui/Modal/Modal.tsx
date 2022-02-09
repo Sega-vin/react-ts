@@ -15,7 +15,6 @@ const Modal:FC<ModalProps> = ({children, visible, setVisible}) => {
   if(visible){
     modalClasses.push(styles.active)
   }
-
   return (
     <div 
       className={modalClasses.join(' ')} 
@@ -28,7 +27,7 @@ const Modal:FC<ModalProps> = ({children, visible, setVisible}) => {
         <AppButton
           className={styles.close}
           onClick={() => setVisible(false)}
-          type={ButtonType.icon}
+          VisibleType={ButtonType.icon}
         >
           <CloseIcon />
         </AppButton>
