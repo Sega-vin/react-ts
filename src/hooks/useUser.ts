@@ -1,4 +1,4 @@
-import { IUser } from "../types/user";
+import { IUser } from "../types/userTypes";
 import {  useMemo } from 'react';
 
 export const useSortedUser = (users:IUser[], searchVal:string) => {

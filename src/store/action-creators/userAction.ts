@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { UserAction, UserActionTypes } from "../../types/user"
+import { IUser, UserAction, UserActionTypes } from "../../types/userTypes"
 import axios  from 'axios';
 
 
@@ -14,3 +14,23 @@ export const fetchUsers = () => {
     }
   }
 }
+
+export const newUser = (user:IUser) => {
+  return async (dispatch: Dispatch<UserAction>) => {
+    try{
+      dispatch({type: UserActionTypes.NEW_USER, payload: user})
+    }catch(e){
+      dispatch({type: UserActionTypes.FETCH_USERS_ERROR, payload: 'Ошибка'})
+    }
+  }
+}
+
+// export const deleteUser = (index: number) => {
+//   return async (dispatch: Dispatch<UserAction>) => {
+//     try{
+//       dispatch({type: UserActionTypes.NEW_USER, payload: user})
+//     }catch(e){
+//       dispatch({type: UserActionTypes.FETCH_USERS_ERROR, payload: 'Ошибка'})
+//     }
+//   }
+// }

@@ -1,8 +1,8 @@
 import axios  from 'axios';
 import React, { FC, useEffect, useState } from 'react';
-import TodoItem from '../components/TodoItem';
-import List from '../components/ui/List';
-import { ITodo } from '../types/types';
+import TodoItem from '../../components/TodoItem';
+import List from '../../components/ui/List';
+import { ITodo } from '../../types/types';
 
 const TodoPage:FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([])

@@ -1,25 +1,17 @@
 import React, { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage.';
-import TodoPage from './pages/TodoPage';
-import UserItemPage from './pages/UserItemPage';
-import UserPage from './pages/User/UserPage';
-import './styles/app.scss'
-import LoginPage from './pages/LoginPage/LoginPage';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import MainLayout from './components/Layouts/MainLayout/MainLayout';
+import EmptyLayout from './components/Layouts/EmptyLayout/EmptyLayout';
+import { routerPrivate, routerPublic } from './router';
 
-const Routing:FC = ({children}) => {
+
+const Routing:FC = () => {
+const auth = false
+const checkAuth = auth ? routerPrivate : routerPublic
+const RoutersComponents = () => useRoutes(checkAuth)
   return (
     <BrowserRouter>
-      {children}
-      <div>
-        <Routes>
-          <Route path={'/users'} element={<UserPage/>}/>
-          <Route path={'/home'} element={<HomePage/>}/>
-          <Route path={'/'} element={<LoginPage />}/>
-          <Route path="/users/:id" element={<UserItemPage/>}/>
-          <Route path={'/todos'} element={<TodoPage/>} />  
-        </Routes>
-      </div>
+      <RoutersComponents />
     </BrowserRouter>
   );
 };

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { IUser } from '../types/user';
+import { IUser } from '../types/userTypes';
 import AppButton, { ButtonType } from './ui/Button/AppButton';
 import Card from './ui/Card';
 

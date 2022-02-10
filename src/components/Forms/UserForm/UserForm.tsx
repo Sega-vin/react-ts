@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { IUser } from '../../../types/user';
+import { IUser } from '../../../types/userTypes';
 import AppButton from '../../ui/Button/AppButton';
 import AppInput from '../../ui/Input/AppInput';
 import styles from './UserForm.module.scss'

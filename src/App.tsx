@@ -1,13 +1,10 @@
 import React from 'react';
-import Header from './components/Header/Header';
 import Routing from './Routing';
-
+import './styles/app.scss'
 
 function App() { 
   return (
-    <Routing>
-      <Header />   
-    </Routing>
+    <Routing />      
   );
 }
 

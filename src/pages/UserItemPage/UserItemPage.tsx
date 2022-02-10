@@ -1,8 +1,8 @@
 import React, { useEffect, useState, FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { IUser } from '../types/user';
+import { IUser } from '../../types/userTypes';
 import axios  from 'axios';
-import Card from '../components/ui/Card';
+import Card from '../../components/ui/Card';
 
 const UserItemPage:FC = () => {
 

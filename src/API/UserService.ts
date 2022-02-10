@@ -1,5 +1,5 @@
 import axios  from 'axios';
-import { IUser } from '../types/user';
+import { IUser } from '../types/userTypes';
 
 export default class UserService {
   static async getAll(){
